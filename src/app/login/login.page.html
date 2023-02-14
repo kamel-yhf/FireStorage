@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="login()" [formGroup]="credentials">
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(email?.dirty || email?.touched) && email?.errors"
+      >
+        Email n'est pas valide exemple@exemple.com
+      </ion-note>
+    </ion-item>
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+      <ion-input
+        type="password"
+        placeholder="Mot de passe"
+        formControlName="password"
+      ></ion-input>
+      <ion-note
+        slot="error"
+        *ngIf="(password?.dirty || password?.touched) && password?.errors"
+      >
+        Le mot de passe n'est pas valide min 6 caractères
+      </ion-note>
+    </ion-item>
+    <br />
+    <ion-button
+      type="submit"
+      expand="block"
+      [disabled]="!credentials.valid"
+      class="ion-margin-bottom"
+    >
+      S'identifier
+    </ion-button>
+    <br />
+    <ion-button
+      type="button"
+      expand="block"
+      color="secondary"
+      (click)="register()"
+    >
+      Inscription
+    </ion-button>
+
+    <ion-button color="success" (click)="loginWithGoogle()">
+      <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+    </ion-button>
+  </form>
+</ion-content>
